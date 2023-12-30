@@ -455,3 +455,116 @@ from functools import reduce
 list_store = [1, 2, 3, 4]
 
 reduce(lambda a, b: a + b, list_store)
+
+
+######################################################
+#COMPREHENSIONS birfden fazla satır ve kodla yapılacak işlemleri tek bir komut ile yapmamızı sağlayan komutlardır
+################################################
+
+#####################################
+#List CCommprehension
+########################################
+
+salaries = [1000, 2000, 30000, 4000, 5000]
+
+
+def new_salary(x):
+    return x * 20 / 100 + x
+
+for salary in salaries:
+  print(new_salary(salary))
+
+null_list = []
+
+
+  for salary in salaries:
+    null_list.append(new_salary(salary))
+
+
+null_list = []
+for salary in salaries:
+    if salary > 3000:
+        null_list.append(new_salary(salary))
+    else:
+        null_list.append(new_salary(salary * 2))
+
+
+#list comprehension tarzında yazılmak istenirse
+
+[new_salary(salary * 2) if salary < 3000 else new_salary(salary) for salary in salaries] #eğer sadece if kullansaydık if kısmı en sağda olurdu ama if else birlikte kullanırsak for  döngüsü en sağda olur
+
+[salary * 2 for salary in salaries]# maaşlaarın içinde gez ve maaşları 2 ile çarp
+
+[salary * 2 for salary in salaries if salary < 3000]# 3000 den küçük olanları 2 ile çarp
+
+[salary * 2 if salary < 3000 else salary * 0 for salary in salaries]
+
+[new_salary(salary * 2) if salary < 3000 else new_salary(salary * 0.2 )  for salary in salaries]
+
+
+students = ["John", "Mark" , "Venessa", "Mariam"]
+
+students_no = ["John", "Venessa"]
+
+[student.lower() if student in students_no else student.upper() for student in students]
+
+[student.upper() if student not in students_no else student.lower() for student in students]
+
+
+##########################################
+#Dict Comprehension
+#########################################
+
+
+dictionary = {'a': 1,
+              'b': 2,
+              'c': 3,
+              'd' : 4}
+
+dictionary.keys()
+dictionary.values()
+dictionary.items()
+
+{k: v ** 2 for (k, v) in dictionary.items()}
+
+{k.upper(): v for (k, v) in dictionary.items()}
+
+{k.upper(): v*2 for (k, v) in dictionary.items()}
+
+
+
+########################################
+#uygulama mülakat sorusu
+#########################################
+# amaç: çift sayıların karesi alınarak bir szölüğe eklenmek isteniyor
+#key'ler orijinal değerler valuelar ise değiştirilimiş olanlar olacak
+
+number =  range(10)
+
+new_dict = {}
+
+for n in number:
+    if n % 2 == 0:
+        new_dict[n] = n ** 2
+
+#basitleştirilmiş hali
+{n: n ** 2 for n in numbers if n % == 0}
+
+
+##########################
+#list & dict comprehension uygulamalar
+##########################
+
+
+###############################
+#bir veri setindeki değişken isimlerini değiştirmek
+##############################
+
+
+#before:
+# ['total', 'speeding', 'alcohol', 'not_distracted', 'no_previous', 'ins_losses', 'abbrev']
+
+#after
+#['TOTAL', 'SPEEDING', 'ALCOHOL', 'NOT_DISTRACTED', 'NO_PREVIOUS', 'INS_LOSSES', 'ABBREV']
+
+
